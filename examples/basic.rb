@@ -7,5 +7,7 @@ response = HTTParty.get('http://twitter.com/statuses/public_timeline.json')
 puts response.body, response.code, response.message, response.headers.inspect
 
 response.each do |item|
-  puts item['user']['screen_name']
+  puts item.user.screen_name  # use handy dot-syntax
+  # or you can still grovel through hashes manually
+  # puts item['user']['screen_name']
 end

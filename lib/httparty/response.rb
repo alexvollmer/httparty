@@ -1,10 +1,12 @@
+require "httparty/hashpath"
 module HTTParty
   class Response < BlankSlate #:nodoc:
+
     attr_accessor :body, :code, :message, :headers
     attr_reader :delegate
 
     def initialize(delegate, body, code, message, headers={})
-      @delegate = delegate
+      @delegate = Hashpath.wrap(delegate)
       @body = body
       @code = code.to_i
       @message = message
